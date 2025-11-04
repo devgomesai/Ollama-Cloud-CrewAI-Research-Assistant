@@ -4,13 +4,13 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 try:
-    from agent.src.agent.crew import ResearchCrew
+    from agent.src.agent.crew import __agent__
     
 except ImportError:
     import sys
     import os
     sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    from agent.src.agent.crew import ResearchCrew
+    from agent.src.agent.crew import __agent__
 import os
 from pathlib import Path
 
@@ -54,8 +54,7 @@ def kickoff(request: KickoffRequest):
         inputs = {
             'topic': request.topic
         }
-        research_crew = ResearchCrew()
-        result = research_crew.crew().kickoff(inputs=inputs)
+        result = __agent__.crew().kickoff(inputs=inputs)
         return {
             "status": "success",
             "topic": request.topic,

@@ -97,5 +97,6 @@ class ResearchCrew:
             tasks=self.tasks,    
             verbose=True,
             process='sequential',  
-            memory=False,  
+            memory=False,     
         )
+__agent__ = ResearchCrew()
